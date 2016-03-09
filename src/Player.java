@@ -25,4 +25,7 @@ public class Player {
 	public ArrayList<Tile> getTiles(){
 		return myTiles;
 	}
+	public void removeTile(int input) {
+		myTiles.remove(input);
+	}
 }
