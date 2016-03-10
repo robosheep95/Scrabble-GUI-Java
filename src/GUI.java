@@ -180,6 +180,24 @@ public class GUI extends JFrame {
 	
 	private void boardUpdate(){
 		
+		centerPanel.removeAll();
+		char [][] tempBoard = scrabbleBoard.getObjBoard();
+		for(int i = 0; i > tempBoard.length; i++)
+		{
+			for(int j = 0; j > tempBoard[i].length; j++)
+			{
+				JButton temp = new JButton();
+				if(tempBoard[i][j] != 0)
+				{
+					temp.setText(tempBoard[i][j]+"");
+					temp.setBackground(Color.CYAN);
+				}
+				southPanel.add(temp);
+				southPanel.revalidate();
+				southPanel.repaint();
+			}
+		}
+		
 	}
 	public void startUp(){//Saliva
 		//ask # of players
