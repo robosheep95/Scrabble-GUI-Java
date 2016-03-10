@@ -15,7 +15,10 @@ public class Board {
 	
 	private char[][] objBoard = new char[15][15];
 	
-//	public boolean setLetter(ArrayList<Tile> tileList, Player player){ //Validates that player has the letter they are wanting to place then asks for where they want to place it
+public char[][] getObjBoard() {
+		return objBoard;
+	}
+	//	public boolean setLetter(ArrayList<Tile> tileList, Player player){ //Validates that player has the letter they are wanting to place then asks for where they want to place it
 //		Scanner oScan = new Scanner(System.in);			//Returns false when the player is done placing letters
 //		System.out.println(tileList);
 //		System.out.println("Choose a Letter or \"-\" to Cancel:  ");

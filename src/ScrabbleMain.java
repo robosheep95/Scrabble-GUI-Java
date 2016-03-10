@@ -1,8 +1,9 @@
-import java.awt.EventQueue;
+import javax.swing.JFrame;
 
 public class ScrabbleMain{
 	public static void main(String[] args) {
 		GUI Window = new GUI();
-		GUI.startUp();
+		Window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//GUI.startUp();
 	}
 }

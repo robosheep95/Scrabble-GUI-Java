@@ -29,10 +29,10 @@ public class GUI extends JFrame {
 	private JRadioButton rdbtnExchange;
 	private JRadioButton rdbtnPlace;
 	private JButton btnExchange;
-	private JLabel lblInstructions;
 	
 	
-	public GUI() {
+	public GUI(){
+		super("Scrabble");
 //-------------------------------------------------------------------------------------------
 
 //Window setup
@@ -40,14 +40,11 @@ public class GUI extends JFrame {
 		int xSize = ((int) tk.getScreenSize().getWidth());
 		int ySize = ((int) tk.getScreenSize().getHeight());
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, xSize, (ySize - 50));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		setVisible(true);
+		contentPane.setBounds(0, 0, xSize, (ySize - 50));
+		contentPane.setVisible(true);
 		
 //--------------------------------------------------------------------------------------------
 		
@@ -87,35 +84,26 @@ public class GUI extends JFrame {
 		eastPanel.add(btnExchange);
 		btnExchange.addActionListener(new exchangeExecute());
 		
-		lblInstructions = new JLabel("Hello, I am the instruction Label");
-		contentPane.add(lblInstructions, BorderLayout.WEST);
 	}
+	
 //--------------------------------------------------------------------------------------------
 	
 //Listeners	
-	private JButton createButton(Tile tile) {
-		JButton temp = new JButton();
-		temp.setText(tile.getLetter()+"");
-		temp.setBackground(Color.orange);
-		temp.addActionListener(new rackPress());
-		return temp;
-	}
+
 	private class tilePress implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent ea) {
-			
 			JButton input =  (JButton) ea.getSource();
-			
-			if(rdbtnPlace.isSelected()){
-				if(!(selectedTile.getText().isEmpty()) && input.getBackground() == Color.WHITE){	
-					switchColor(input);	
-					input.setText(selectedTile.getText());
-					southPanel.remove(selectedTile);
+			if(rdbtnPlace.isSelected() && input.getBackground() == Color.WHITE){
+				for(int i = 0;i<southPanel.getComponentCount();i++){
+					if (southPanel.getComponent(i).getBackground() == Color.green){
+					playerList[intCurrentPlayer].removeTile(i);
+					southPanel.remove(i);
 					southPanel.revalidate();
-					selectedTile.setText("");
 					southPanel.repaint();
-					canExchange = false;
-				}	
+					break;
+					}	
+				}
 			}
 		}
 	}
@@ -127,9 +115,7 @@ public class GUI extends JFrame {
 					southPanel.getComponent(i).setBackground(Color.orange);
 				}
 			}
-			selectedTile = (JButton) ea.getSource();
-			switchColor(selectedTile);
-			System.out.println(selectedTile.getText());
+			switchColor((JButton) ea.getSource());
 		}
 	}
 	private class exchangeExecute implements ActionListener{
@@ -138,7 +124,7 @@ public class GUI extends JFrame {
 			if(rdbtnExchange.isSelected()){
 				for(int i=0; i<southPanel.getComponentCount();){
 					if(southPanel.getComponent(i).getBackground() == Color.GREEN){
-						currentPlayer.removeTile(i);
+						playerList[intCurrentPlayer].removeTile(i);
 					}
 					else
 						i++;
@@ -169,10 +155,11 @@ public class GUI extends JFrame {
 				intCurrentPlayer = 0;
 			}
 			else{
-				currentPlayer
+				
 			}
 		}
 	}
+	
 //--------------------------------------------------------------------------------------------
 	
 //Functions
@@ -195,7 +182,7 @@ public class GUI extends JFrame {
 	private void boardUpdate(){
 		
 	}
-	public void startUp(){//Sylvia
+	public void startUp(){//Saliva
 		//ask # of players
 		//create players and add to list
 		// set instructions
@@ -212,12 +199,12 @@ public class GUI extends JFrame {
 	
 	private void rackUpdate(){
 		southPanel.removeAll();
-		scrabbleBoard.getTiles(currentPlayer);
-		for (Tile tile : currentPlayer.getTiles()){
-			southPanel.add(createButton(tile));
+		scrabbleBoard.getTiles(playerList[intCurrentPlayer]);
+		for (Tile tile : playerList[intCurrentPlayer].getTiles()){
+			
 		}
 		southPanel.revalidate();
 		southPanel.repaint();
 	}
 	
-}
+}//LAST BRACKET DO NOT REMOVE!!!!!!!
