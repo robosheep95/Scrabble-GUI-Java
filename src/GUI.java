@@ -21,11 +21,10 @@ public class GUI extends JFrame {
 	private boolean canExchange;
 	
 	private JPanel contentPane;
-	public Board scrabbleBoard = new Board();
-	public Player[] playerList;
-	public int intCurrentPlayer;
-	public int intSelectedTile;
-	public JPanel eastPanel, westPanel, centerPanel, southPanel;
+	private Board scrabbleBoard = new Board();
+	private Player[] playerList;
+	private int intCurrentPlayer;
+	private JPanel eastPanel, westPanel, centerPanel, southPanel;
 	private JRadioButton rdbtnExchange;
 	private JRadioButton rdbtnPlace;
 	private JButton btnExchange;
@@ -43,8 +42,8 @@ public class GUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		contentPane.setBounds(0, 0, xSize, (ySize - 50));
-		contentPane.setVisible(true);
+		setBounds(0, 0, xSize, (ySize - 50));
+		setVisible(true);
 		
 //--------------------------------------------------------------------------------------------
 		
